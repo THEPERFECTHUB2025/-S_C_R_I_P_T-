@@ -3224,7 +3224,10 @@ function Luna:CreateWindow(WindowSettings)
 						Toggle.toggle.color.Enabled = false
 						Toggle.toggle.UIStroke.color.Enabled = false
 
-						Toggle.toggle.UIStroke.Color = Color3.fromRGB(97,97,97)
+						Toggle.toggle.UIStroke.Color = Color3.fromRGB(255, 165, 0) -- Orange
+						Toggle.toggle.UIStroke.Color = Color3.fromRGB(0, 128, 0)   -- Vert
+						Toggle.toggle.UIStroke.Color = Color3.fromRGB(0, 0, 0)     -- Noir
+
 
 						tween(Toggle.toggle, {BackgroundTransparency = 1})
 
