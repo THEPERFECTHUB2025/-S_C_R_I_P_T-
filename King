@@ -3222,18 +3222,13 @@ function Luna:CreateWindow(WindowSettings)
 						tween(Toggle.toggle.val, {BackgroundColor3 = Color3.fromRGB(255,255,255), Position = UDim2.new(1,-23,0.5,0), BackgroundTransparency = 0.45})
 					else
 						Toggle.toggle.color.Enabled = false
-Toggle.toggle.UIStroke.color.Enabled = false
+						Toggle.toggle.UIStroke.color.Enabled = false
 
-Toggle.toggle.UIStroke.Color = Color3.fromRGB(255, 165, 0) -- Orange
-Toggle.toggle.UIStroke.Color = Color3.fromRGB(0, 128, 0)   -- Vert
-Toggle.toggle.UIStroke.Color = Color3.fromRGB(0, 0, 0)     -- Noir
+						Toggle.toggle.UIStroke.Color = Color3.fromRGB(165,128,0)
 
-tween(Toggle.toggle, {BackgroundTransparency = 1})
+						tween(Toggle.toggle, {BackgroundTransparency = 1})
 
-tween(Toggle.toggle.val, {BackgroundColor3 = Color3.fromRGB(255, 165, 0), Position = UDim2.new(0, 5, 0.5, 0), BackgroundTransparency = 0})
-tween(Toggle.toggle.val, {BackgroundColor3 = Color3.fromRGB(0, 128, 0), Position = UDim2.new(0, 5, 0.5, 0), BackgroundTransparency = 0})
-tween(Toggle.toggle.val, {BackgroundColor3 = Color3.fromRGB(0, 0, 0), Position = UDim2.new(0, 5, 0.5, 0), BackgroundTransparency = 0})
-
+						tween(Toggle.toggle.val, {BackgroundColor3 = Color3.fromRGB(165,128,0), Position = UDim2.new(0,5,0.5,0), BackgroundTransparency = 0})
 					end
 
 					ToggleV.CurrentValue = bool
@@ -4817,11 +4812,11 @@ tween(Toggle.toggle.val, {BackgroundColor3 = Color3.fromRGB(0, 0, 0), Position =
 					Toggle.toggle.color.Enabled = false
 					Toggle.toggle.UIStroke.color.Enabled = false
 
-					Toggle.toggle.UIStroke.Color = Color3.fromRGB(97,97,97)
+					Toggle.toggle.UIStroke.Color = Color3.fromRGB(165,128,0)
 
 					tween(Toggle.toggle, {BackgroundTransparency = 1})
 
-					tween(Toggle.toggle.val, {BackgroundColor3 = Color3.fromRGB(97,97,97), Position = UDim2.new(0,5,0.5,0), BackgroundTransparency = 0})
+					tween(Toggle.toggle.val, {BackgroundColor3 = Color3.fromRGB(165,128,0), Position = UDim2.new(0,5,0.5,0), BackgroundTransparency = 0})
 				end
 
 				ToggleV.CurrentValue = bool
