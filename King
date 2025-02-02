@@ -1,3 +1,28 @@
+--[[
+
+Luna Interface Suite
+by Nebula Softworks
+
+Main Credits
+
+Hunter (Nebula Softworks) | Designing And Programming | Main Developer
+JustHey (Nebula Softworks) | Configurations, Bug Fixing And More! | Co Developer
+Throit | Color Picker
+Wally | Dragging And Certain Functions
+Sirius | PCall Parsing, Notifications, Slider And Home Tab
+Luna Executor | Original UI
+
+
+Extra Credits / Provided Certain Elements
+
+Pookie Pepelss | Bug Tester
+Inori | Configuration Concept
+Latte Softworks and qweery | Lucide Icons And Material Icons
+kirill9655 | Loading Circle
+Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
+
+]]
+
 local Release = "Prerelease Beta 6.1"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
@@ -1532,12 +1557,12 @@ local function GetIcon(icon, source)
 		local iconData = not isStudio and game:HttpGet("https://raw.githubusercontent.com/latte-soft/lucide-roblox/refs/heads/master/lib/Icons.luau")
 		local icons = isStudio and IconModule.Lucide or loadstring(iconData)()
 		if not isStudio then
-			icon = string.match(string.lower(icon), "^%s*(.*)%s*$") :: string
+			icon = string.match(string.lower(icon), "^%s*(.*)%s*$")
 			local sizedicons = icons['48px']
 
 			local r = sizedicons[icon]
 			if not r then
-				error("Lucide Icons: Failed to find icon by the name of \"" .. icon .. "\.", 2)
+				error("Lucide Icons: Failed to find icon by the name of \"" .. icon .. "\".", 2)
 			end
 
 			local rirs = r[2]
@@ -1792,14 +1817,14 @@ local function BlurModule(Frame)
 	RunService:BindToRenderStep(uid, 2000, UpdateOrientation)
 end
 
-local function unpackt(array : table)
+local function unpackt(array)
 
 	local val = ""
 	local i = 0
 	for _,v in pairs(array) do
 		if i < 3 then
 			val = val .. v .. ", "
-			i += 1
+			i = i + 1
 		else
 			val = "Various"
 			break
@@ -1889,7 +1914,7 @@ LunaUI.SmartWindow.Visible = false
 LunaUI.Notifications.Template.Visible = false
 LunaUI.DisplayOrder = 1000000000
 
-local Main : Frame = LunaUI.SmartWindow
+local Main = LunaUI.SmartWindow
 local Dragger = Main.Drag
 local dragBar = LunaUI.Drag
 local dragInteract = dragBar and dragBar.Interact or nil
@@ -1899,7 +1924,7 @@ local LoadingFrame = Main.LoadingFrame
 local Navigation = Main.Navigation
 local Tabs = Navigation.Tabs
 local Notifications = LunaUI.Notifications
-local KeySystem : Frame = Main.KeySystem
+local KeySystem = Main.KeySystem
 
 -- local function LoadConfiguration(Configuration, autoload)
 -- 	local Data = HttpService:JSONDecode(Configuration)
@@ -2566,11 +2591,12 @@ function Luna:CreateWindow(WindowSettings)
 				local friendsInGame = 0 
 
 				local list = Players:GetFriendsAsync(Player.UserId)
-				while true do -- loop through all the pages
-					for _, data in list:GetCurrentPage() do
-						friendsInTotal +=1
-						table.insert(playersFriends, Data)
-					end
+						while true do -- loop through all the pages
+    			for _, data in list:GetCurrentPage() do
+					friendsInTotal = friendsInTotal + 1
+					table.insert(playersFriends, data)
+				end
+
 
 					if list.IsFinished then
 						-- stop the loop since this is the last page
@@ -2581,8 +2607,8 @@ function Luna:CreateWindow(WindowSettings)
 					end
 				end
 				for i, v in pairs(Player:GetFriendsOnline()) do
-					onlineFriends += 1
-				end
+					onlineFriends = onlineFriends + 1
+				end				
 
 				for i,v in pairs(playersFriends) do
 					if Players:FindFirstChild(v.Username) then
@@ -2596,7 +2622,9 @@ function Luna:CreateWindow(WindowSettings)
 				HomeTabPage.detailsholder.dashboard.Friends.InGame.Value.Text = tostring(friendsInGame).." friends"
 
 			else
-				friendsCooldown -= 1
+				if condition then
+					friendsCooldown = friendsCooldown - 1
+				end				
 			end
 		end
 
@@ -2712,12 +2740,13 @@ function Luna:CreateWindow(WindowSettings)
 		FirstTab = false
 
 		-- Section
-		function Tab:CreateSection(name : string)
-
+		function Tab:CreateSection(name)
 			local Section = {}
-
-			if name == nil then name = "Section" end
-
+		
+			if name == nil then
+				name = "Section"
+			end
+		
 			Section.Name = name
 
 			local Sectiont = Elements.Template.Section:Clone()
@@ -6494,12 +6523,11 @@ function Luna:CreateWindow(WindowSettings)
 			}
 
 			for flag, option in next, Luna.Options do
-				if not ClassParser[option.Class] then continue end
-				if option.IgnoreConfig then continue end
-
-				table.insert(data.objects, ClassParser[option.Class].Save(flag, option))
-			end	
-
+				if ClassParser[option.Class] and not option.IgnoreConfig then
+					table.insert(data.objects, ClassParser[option.Class].Save(flag, option))
+				end
+			end
+			
 			local success, encoded = pcall(HttpService.JSONEncode, HttpService, data)
 			if not success then
 				return false, "Unable to encode into JSON data"
