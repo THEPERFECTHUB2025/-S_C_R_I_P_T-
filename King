@@ -1,28 +1,3 @@
---[[
-
-Luna Interface Suite
-by Nebula Softworks
-
-Main Credits
-
-Hunter (Nebula Softworks) | Designing And Programming | Main Developer
-JustHey (Nebula Softworks) | Configurations, Bug Fixing And More! | Co Developer
-Throit | Color Picker
-Wally | Dragging And Certain Functions
-Sirius | PCall Parsing, Notifications, Slider And Home Tab
-Luna Executor | Original UI
-
-
-Extra Credits / Provided Certain Elements
-
-Pookie Pepelss | Bug Tester
-Inori | Configuration Concept
-Latte Softworks and qweery | Lucide Icons And Material Icons
-kirill9655 | Loading Circle
-Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
-
-]]
-
 local Release = "Prerelease Beta 6.1"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
@@ -1553,8 +1528,8 @@ local function GetIcon(icon, source)
 	if source == "Custom" then
 		return "rbxassetid://" .. icon
 	elseif source == "Lucide" then
-		-- full credit to latte softworks :)
-		local iconData = not isStudio and game:HttpGet("https://raw.githubusercontent.com/latte-soft/lucide-roblox/refs/heads/master/lib/Icons.luau")
+		
+		local iconData = not isStudio and game:HttpGet("https://raw.githubusercontent.com/THEPERFECTHUB2025/-S_C_R_I_P_T-/refs/heads/main/icons")
 		local icons = isStudio and IconModule.Lucide or loadstring(iconData)()
 		if not isStudio then
 			icon = string.match(string.lower(icon), "^%s*(.*)%s*$")
@@ -1651,7 +1626,7 @@ local function BlurModule(Frame)
 	frame.AnchorPoint = Vector2.new(0.5, 0.5)
 	frame.BackgroundTransparency = 1
 
-	local GenUid; do -- Generate unique names for RenderStepped bindings
+	local GenUid; do
 		local id = 0
 		function GenUid()
 			id = id + 1
@@ -1674,7 +1649,7 @@ local function BlurModule(Frame)
 
 		local acos, max, pi, sqrt = math.acos, math.max, math.pi, math.sqrt
 		local sz = 0.22
-		local function DrawTriangle(v1, v2, v3, p0, p1) -- I think Stravant wrote this function
+		local function DrawTriangle(v1, v2, v3, p0, p1) 
 
 			local s1 = (v1 - v2).magnitude
 			local s2 = (v2 - v3).magnitude
